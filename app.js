@@ -10,10 +10,32 @@ const itemNames =['bag', 'banana', 'bathroom', 'boots', 'breakfast',
   'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen',
   'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb',
   'water-can', 'wine-glass'];
+const nameExt = [
+  'bag.jpg',
+  'banana.jpg',
+  'bathroom.jpg',
+  'boots.jpg',
+  'breakfast.jpg',
+  'bubblegum.jpg',
+  'chair.jpg',
+  'cthulhu.jpg',
+  'dog-duck.jpg',
+  'dragon.jpg',
+  'pen.jpg',
+  'pet-sweep.jpg',
+  'scissors.jpg',
+  'shark.jpg',
+  'sweep.png',
+  'tauntaun.jpg',
+  'unicorn.jpg',
+  'usb.gif',
+  'water-can.jpg',
+  'wine-glass.jpg'
+];
 
-function Items(name){
+function Items(name, nameExt){
   this.name = name;
-  this.path = `./images/${name}.jpg`;
+  this.path = `./images/${nameExt}`;
   this.votes = 0;
   this.shown = 0;
   Items.all.push(this);
@@ -21,7 +43,7 @@ function Items(name){
 Items.all = [];
 
 for(let i=0; i<itemNames.length; i++){
-  new Items(itemNames[i]);
+  new Items(itemNames[i], nameExt[i]);
 }
 
 
@@ -35,7 +57,7 @@ function randomNumb(max, min) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function display(){
+function render(){
 
   leftIndex = randomNumb(Items.all.length-1, 0);
   leftImage.src = Items.all[leftIndex].path;
@@ -69,7 +91,7 @@ function voting(event){
     }else{
       Items.all[rightIndex].votes++;
     }
-    display();
+    render();
     numRounds +=1;
     if (numRounds === 25) {
       results = document.createElement('button');
@@ -79,7 +101,9 @@ function voting(event){
       results.addEventListener('click', compute);
     }
   }
+  render();
 }
+render();
 
 function compute(event){
   const table = document.createElement('ul');
@@ -90,4 +114,4 @@ function compute(event){
     elList.textContent = `${Items.all[i].name} had ${Items.all[i].votes} vote/s, and was seen ${Items.all[i].shown} times.`;
   }
 }
-display();
+render();
