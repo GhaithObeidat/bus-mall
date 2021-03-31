@@ -1,46 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
     <title>BusMall</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>BusMall</h1>
-        <nav>
-            <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Contact us</a></li>
-            <li><a href="#">Feedback</a></li>
-            </ul>
-        </nav>
+      
     </header>
-    
     <main>
-        <h4>Choose an item</h4>
-        
-        <section id="products">
-            <img id="product1" src="" alt="" title="">
-            <img id="product2" src="" alt="" title="">
-            <img id="product3" src="" alt="" title="">
-        </section>
-        <section id="list">
-
-        </section>
+      <h1>Vote For Your Product</h1>
+      <section id="images-section">
+        <img id="left-image" src="" alt="" title=""/>
+        <img id="center-image" src="" alt="" title=""/>
+        <img id="right-image" src="" alt="" title=""/>
+      </section>
+      <button id="btn">View Results</button>
+      <article id='article'></article>
+      <canvas id="myChart"></canvas>
     </main>
-    
-    <footer>
-        <ol>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ol>
-    </footer>
-    <canvas id="myChart"></canvas>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="/JS/app.js"></script>
+    <script src="JS/app.js"></script>
 </body>
+
 </html>
