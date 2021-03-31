@@ -35,6 +35,7 @@ const centerImage = document.getElementById('center-image');
 const rightImage = document.getElementById('right-image');
 const section = document.getElementById('images-section');
 const button = document.getElementById('btn');
+
 const button2 = document.getElementById('reset');
 
 
@@ -44,6 +45,7 @@ function Mall(productName) {
   this.votes = 0;
   this.views = 0;
   Mall.all.push(this);
+
 
 }
 Mall.all = [];
@@ -65,7 +67,43 @@ function getProduct(){
     console.log(normalObj);
   }
   render();
+=======
 }
+Mall.all = [];
+
+for (let i = 0; i < product.length; i++) {
+  new Mall(product[i]);
+
+}
+console.log(Mall.all);
+
+function render() {
+  arrcheck = [];
+  do {
+    leftIndex = randomNumber(0, Mall.all.length - 1);
+    centerIndex = randomNumber(0, Mall.all.length - 1);
+    rightIndex = randomNumber(0, Mall.all.length - 1);
+    if (arrcheck.includes(leftIndex) || arrcheck.includes(centerIndex) || arrcheck.includes(rightIndex)) {
+      leftIndex = randomNumber(0, Mall.all.length - 1);
+      centerIndex = randomNumber(0, Mall.all.length - 1);
+      rightIndex = randomNumber(0, Mall.all.length - 1);
+    }
+    arrcheck.push(leftIndex, centerIndex, rightIndex);
+    console.log(arrcheck);
+  } while (leftIndex === rightIndex || leftIndex === centerIndex || rightIndex === centerIndex);
+
+
+  leftImage.src = Mall.all[leftIndex].path;
+  leftImage.alt = Mall.all[leftIndex].productName;
+  leftImage.title = Mall.all[leftIndex].productName;
+
+  rightImage.src = Mall.all[rightIndex].path;
+  rightImage.alt = Mall.all[rightIndex].productName;
+  rightImage.title = Mall.all[rightIndex].productName;
+
+  centerImage.src = Mall.all[centerIndex].path;
+  centerImage.alt = Mall.all[centerIndex].productName;
+  centerImage.title = Mall.all[centerIndex].productName;
 
 
 
@@ -92,6 +130,8 @@ function render() {
   arrcheck = [];
   arrcheck.push(leftIndex, centerIndex, rightIndex);
   console.log(arrcheck);
+
+
 
 }
 
@@ -127,7 +167,9 @@ function clicking(event) {
   }
   else {
     section.removeEventListener('click', clicking);
+
     setProduct();
+
   }
 
 }
@@ -150,11 +192,15 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 button2.addEventListener('click', function(){
   localStorage.clear();
   location.reload();
 });
 
+
+
+render();
 
 function chartFun() {
   let ctx = document.getElementById('myChart').getContext('2d');
